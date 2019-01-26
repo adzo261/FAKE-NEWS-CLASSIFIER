@@ -24,13 +24,13 @@ def write_data_from_FAKENEWSNET(directory, sources):
                 with open(os.path.join(temp_directory, f)) as f, open('data.csv', 'a') as csv_file:
                     data = json.load(f)
                     writer = csv.writer(csv_file)
-                    print(c, f.name)
                     c += 1
                     title, text = str(data['title'].encode(
-                        'ascii', 'ignore')), str(data['text'].encode(
-                            'ascii', 'ignore'))
-                    re.sub(r'\W+', '', title)
-                    re.sub(r'\W+', '', text)
+                        'ascii', 'ignore'), 'utf-8'), str(data['text'].encode(
+                            'ascii', 'ignore'), 'utf-8')
+                    print(type(title))
+                    title = re.sub(r'\W+', ' ', title)
+                    text = re.sub(r'\W+', ' ', text)
                     writer.writerows([[title, text, folder[0]]])
 
 
@@ -45,10 +45,9 @@ def write_data_from_HORNE2017(directory, sources):
                     print(c, f.name)
                     c += 1
                     writer = csv.writer(csv_file)
-                    print(type(ft.read()))
                     title, text = ft.read(), f.read()
-                    re.sub(r'\W+', '', title)
-                    re.sub(r'\W+', '', text)
+                    title = re.sub(r'\W+', ' ', title)
+                    text = re.sub(r'\W+', ' ', text)
                     writer.writerows([[title, text, folder[0]]])
 
 
