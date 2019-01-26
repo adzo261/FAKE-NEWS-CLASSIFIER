@@ -1,6 +1,7 @@
 import os
 import json
 import csv
+import re
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
@@ -11,8 +12,11 @@ with open('data.csv', 'w+') as csv_file:
 
 directory = 'Datasets/FakeNewsNet-master/Data/BuzzFeed/RealNewsContent'
 
+c = 1
+
 
 def write_data_from_FAKENEWSNET(directory, sources):
+    global c
     for source in sources:
         for folder in ['Fake', 'Real']:
             temp_directory = directory + source+'/'+folder+'NewsContent'
@@ -20,20 +24,32 @@ def write_data_from_FAKENEWSNET(directory, sources):
                 with open(os.path.join(temp_directory, f)) as f, open('data.csv', 'a') as csv_file:
                     data = json.load(f)
                     writer = csv.writer(csv_file)
-                    writer.writerows([[data['title'].encode(
-                        'ascii', 'ignore'), data['text'].encode(
-                        'ascii', 'ignore'), folder[0]]])
+                    print(c, f.name)
+                    c += 1
+                    title, text = str(data['title'].encode(
+                        'ascii', 'ignore')), str(data['text'].encode(
+                            'ascii', 'ignore'))
+                    re.sub(r'\W+', '', title)
+                    re.sub(r'\W+', '', text)
+                    writer.writerows([[title, text, folder[0]]])
 
 
 def write_data_from_HORNE2017(directory, sources):
+    global c
     for source in sources:
         for folder in ['Fake', 'Real']:
             temp_directory = directory + source+' Political News Dataset'+'/'+folder
             for f in os.listdir(os.path.join(BASE_DIR, temp_directory)):
                 with open(os.path.join(temp_directory+'_titles', f), encoding="utf8", errors='ignore') as ft, open(os.path.join(temp_directory, f), encoding="utf8", errors='ignore') as f, open('data.csv', 'a') as csv_file:
                     # print(f.name, ft.name)
+                    print(c, f.name)
+                    c += 1
                     writer = csv.writer(csv_file)
-                    writer.writerows([[ft.read(), f.read(), folder[0]]])
+                    print(type(ft.read()))
+                    title, text = ft.read(), f.read()
+                    re.sub(r'\W+', '', title)
+                    re.sub(r'\W+', '', text)
+                    writer.writerows([[title, text, folder[0]]])
 
 
 def shape():
