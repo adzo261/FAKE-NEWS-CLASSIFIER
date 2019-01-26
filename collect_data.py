@@ -28,7 +28,6 @@ def write_data_from_FAKENEWSNET(directory, sources):
                     title, text = str(data['title'].encode(
                         'ascii', 'ignore'), 'utf-8'), str(data['text'].encode(
                             'ascii', 'ignore'), 'utf-8')
-                    print(type(title))
                     title = re.sub(r'\W+', ' ', title)
                     text = re.sub(r'\W+', ' ', text)
                     writer.writerows([[title, text, folder[0]]])
