@@ -2,7 +2,7 @@
 
 - [data.csv](/data.csv) is the merged data.
 - Has 21474 rows and 3 columns:`title`,`text`, and `label`
-- label: 1-unreliable,0-fake.
+- label: 1 - unreliable/fake, 0 - reliable/real.
 
 ### Adding data
 
