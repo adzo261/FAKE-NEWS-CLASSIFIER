@@ -1,0 +1,27 @@
+body {
+  font-family: "Lato", sans-serif;
+  font-weight: 300;
+}
+
+.logo {
+  font-family: "Prata", serif;
+  font-weight: 500;
+  color: black;
+  margin-top: 20vh;
+  font-size: 10vh;
+}
+
+.btn:hover {
+  color: white;
+  text-decoration: none;
+}
+.result {
+  height: 100%;
+  width: 100%;
+}
+.outcome {
+  margin: auto;
+  color: white;
+  font-size: 10vh;
+  font-weight: 500;
+}
