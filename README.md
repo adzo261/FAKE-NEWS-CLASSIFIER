@@ -9,3 +9,7 @@ Using NLP and Machine Learning Techniques to give credibility to a user provided
 3.  [FakeNews](https://www.kaggle.com/c/fake-news/data)
 
 For more info about data and to add more data, refer [DATASET.md](/DATASET.md)
+
+--------------------
+
+**Demo**: https://fake-news-classifier.herokuapp.com
